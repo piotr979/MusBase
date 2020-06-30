@@ -12,7 +12,11 @@ import Combine
 
 class ImageFetcher: ObservableObject  {
     
-   @Published var imageData: Data? = nil
+    @Published var imageData: Data? = nil {
+        didSet {
+       //     print("Image data set")
+        }
+    }
     
     
     var imageURL: URL?
@@ -25,13 +29,16 @@ class ImageFetcher: ObservableObject  {
         
         guard let url = imageURL else { return }
         
-        URLSession.shared.dataTask(with: url) { (data, _, _) in
+        URLSession.shared.dataTask(with: url)  { data,response,error in
+        
+print(error)
+            
             guard let data = data else {
                 return
             }
             DispatchQueue.main.async {
                 self.imageData = data
-               // print(self.imageData)
+             //   print(self.imageData)
                 
             }
         }.resume()

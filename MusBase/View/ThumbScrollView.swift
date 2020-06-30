@@ -39,7 +39,7 @@ struct ThumbScrollView: View {
                                           Text(data.strAlbum!.trunc(length: 21)).foregroundColor((.secondary)).font(.custom("AvenirNext-Regular", size: 14))
                                       }
                               }.sheet(isPresented: self.$showAlbum) {
-                                  AlbumDetails(data: self.albumDetails!)
+                                  AlbumDetails(data: self.albumDetails!, moreAboutArtist: true)
                               }
                           }
 
